@@ -56,9 +56,14 @@ if __name__ == "__main__":
 
     frequency_search(1, wf_histogram)
     sorted_hist = sorted(wf_histogram.values())
-    print('The most common word(s) is {}, having appeared {} time(s)\nThe least common word(s) is {}, having appeared {} time(s)'.format(frequency_search(sorted_hist[-1], wf_histogram), sorted_hist[-1], frequency_search(sorted_hist[0], wf_histogram), sorted_hist[0]))
+
+    ''' Testing~! '''
+    print('The most common word(s) is {}, having appeared {} time(s)\nThe least common word(s) is {}, having appeared {} time(s)' \
+        .format(frequency_search(sorted_hist[-1], wf_histogram), sorted_hist[-1], \
+        frequency_search(sorted_hist[0], wf_histogram), sorted_hist[0]))
     print('There are {} unique words'.format(unique_words(wf_histogram)))
     print('The average frequency of words is {}'.format(average_frequency(wf_histogram)))
+
     # print (wf_histogram)
     # print (unique_words(wf_histogram))
     # if len(sys.argv) >= 3:
