@@ -6,5 +6,6 @@ def systemRearrange() -> str:
     string = ' '.join(item for item in newSet)
     return string
 
+
 if __name__ == "__main__":
     print(systemRearrange())

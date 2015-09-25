@@ -13,5 +13,6 @@ def random_Dictionary():
         string += words[rand_index].replace("\n", " ")
     return string
 
+
 if __name__ == "__main__":
     print(random_Dictionary())

@@ -2,7 +2,7 @@ from string import punctuation
 from collections import defaultdict
 import re
 import sys
-import operator
+# import operator
 #
 #
 # marx = open('marx.txt', 'r').readlines()
@@ -27,12 +27,31 @@ def histogram(source_text: str):
     return histogram
 
 
+def listogram(source_text: str):
+    lgram = []
+    for word in wordlist(source_text):
+        try:
+            index = lgram.index(word)
+        except:
+            index = None
+        if index is None:
+            lgram.append(word, 1)
+        else:
+            lgram[index] = (word, lgram[index][1] + 1)
+    return lgram
+
+
 def unique_words(hist: defaultdict):
     return len(hist.keys())
 
 
-def frequency(word: str, hist: defaultdict):
-    return hist[word]
+def frequency(word: str, hist):
+    if type(hist) == list:
+        for item in hist:
+            if item[0] == word:
+                return item[1]
+    if type(hist) == defaultdict:
+        return hist[word]
 
 
 def average_frequency(hist: defaultdict):
@@ -54,6 +73,7 @@ def frequency_search(freq: int, hist: defaultdict):
 if __name__ == "__main__":
     wf_histogram = (histogram(sys.argv[1]))
 
+    # print(frequency('the', wf_histogram))
     frequency_search(1, wf_histogram)
     sorted_hist = sorted(wf_histogram.values())
 
