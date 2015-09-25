@@ -1,15 +1,14 @@
+''' Jimmy's awful attempt at making a defaultdict (kind of) from hashtable~ '''
+
+
+import LinkedList
+
+
 class HashTable:
-    def __init__(self):
-        self.data = []
+    def __init__(self, value_type):
+        self.buckets = [[]]
+        self.type = value_type
+        self.entries = 0
 
-
-    def get(key, asoc_array):
-        # The less efficient, list based version:
-        # for index, value in enumerate(asoc_array):
-        #     if value == key:
-        #         return asoc_array[index + 1]
-        # return None
-
-
-        # Hashing!
-        
+    def update_buckets():
+        pass
