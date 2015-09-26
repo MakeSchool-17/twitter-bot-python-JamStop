@@ -20,20 +20,20 @@ class HashTable():
         pass
 
     def __setitem__(self, key, value):
-        # hash_value = hash(key) % len(self.buckets)
-        # if buckets[hash_value] is None:
-        #     buckets[hash_value] = LinkedList()
-        # if buckets[hash_value].find(key) is None:
-
-        print('called set item!')
-        pass
+        hash_value = hash(key) % len(self.buckets)
+        target = self[hash_value]
+        # print (value)
+        # print(target)
+        if type(target) is int and type(value) is int:
+            target = value
+        return target
 
     def __getitem__(self, key):
-        self.entries += 1
-        self.update_buckets()
         hash_value = hash(key) % len(self.buckets)
         if not self.buckets[hash_value]:
             self.buckets[hash_value] = LinkedList()
+            self.entries += 1
+            self.update_buckets()
         if self.buckets[hash_value].find(key) is None:
             if self.type == int:
                 self.buckets[hash_value].insert([key, 0])
