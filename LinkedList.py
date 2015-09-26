@@ -1,8 +1,8 @@
 ''' LinkedList implementation '''
 
 
-import Node
-
+# import Node
+from Node import Node
 
 class LinkedList():
     def __init__(self, head=None):
@@ -23,10 +23,22 @@ class LinkedList():
     def find(self, key):
         current = self.head
         while current:
-            if current.key == value:
+            if current.value[0] == key:
                 return current
             else:
                 current = current.next
         return None
 
-    # def remove(self, value):
+    def remove(self, key):
+        current = self.head
+        previous = None
+        while current:
+            if current.value == key:
+                if previous is None:
+                    self.head = current.next
+                    return
+                previous.next = current.next
+                return
+            previous = current
+            current = current.next
+        return
