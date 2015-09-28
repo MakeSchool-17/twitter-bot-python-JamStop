@@ -2,6 +2,7 @@ from string import punctuation
 from collections import defaultdict
 import re
 import sys
+import HashTable
 # import operator
 #
 #
@@ -22,6 +23,13 @@ def wordlist(file_name: str) -> []:
 
 def histogram(source_text: str):
     histogram = defaultdict(int)
+    for word in wordlist(source_text):
+        histogram[word] += 1
+    return histogram
+
+
+def hashtablegram(source_text: str):
+    histogram = HashTable.HashTable(int)
     for word in wordlist(source_text):
         histogram[word] += 1
     return histogram
@@ -72,6 +80,9 @@ def frequency_search(freq: int, hist: defaultdict):
 
 if __name__ == "__main__":
     wf_histogram = (histogram(sys.argv[1]))
+
+    ''' HashTable.py implementation used here->still missing some overloads '''
+    # wf_histogram = hashtablegram(sys.argv[1])
 
     # print(frequency('the', wf_histogram))
     frequency_search(1, wf_histogram)
