@@ -10,14 +10,22 @@ import HashTable
 # punct = re.compile(r'[\s{}]+'.format(re.escape(punctuation)))
 
 
+''' My "parser" isn't anything special. All I really needed to do in the end
+    was get rid of numberical values '''
+
+
 def wordlist(file_name: str) -> []:
-    file = open(file_name, 'r').readlines()
+    # file = open(file_name, 'r').readlines()
     punct = re.compile(r'[\s{}]+'.format(re.escape(punctuation)))
     word_list = []
-    for line in file:
-        for word in punct.split(line):
-            if word != '':
-                word_list.append(word.lower())
+    with open(file_name, 'rb') as f:
+        for line in f:
+            for word in punct.split(str(line)):
+                if word != '':    # right here
+                    try:
+                        int(word)
+                    except:
+                        word_list.append(word.lower())
     return word_list
 
 
