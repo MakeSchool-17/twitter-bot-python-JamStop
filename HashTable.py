@@ -9,7 +9,7 @@ from LinkedList import LinkedList
 
 class HashTable():
     def __init__(self, value_type):
-        self.buckets = [[] * 8]
+        self.buckets = [[] * 5000]
         self.data = []
         self.type = value_type
         self.entries = 0

@@ -78,6 +78,14 @@ def frequency_search(freq: int, hist: defaultdict):
     return word
 
 
+def word_search(key: str, hist: defaultdict):
+    freq = 0
+    for v, k in hist.items():
+        if v == key:
+            return k
+    return freq
+
+
 if __name__ == "__main__":
     wf_histogram = (histogram(sys.argv[1]))
 
@@ -85,7 +93,8 @@ if __name__ == "__main__":
     # wf_histogram = hashtablegram(sys.argv[1])
 
     # print(frequency('the', wf_histogram))
-    frequency_search(1, wf_histogram)
+    # frequency_search(1, wf_histogram)
+    print('"Bourgeoisie" appeared {} time(s)!'.format(word_search('bourgeoisie', wf_histogram)))
     sorted_hist = sorted(wf_histogram.values())
 
     ''' Testing~! '''
