@@ -4,9 +4,15 @@
 # import Node
 from Node import Node
 
+
 class LinkedList():
     def __init__(self, head=None):
         self.head = head
+
+    def __iter__(self):
+        while True and self.head is not None:
+            yield self.head
+            self.head = self.head.next
 
     def insert(self, value):
         new_node = Node(value)
