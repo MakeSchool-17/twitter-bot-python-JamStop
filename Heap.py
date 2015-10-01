@@ -17,15 +17,24 @@ class Heap:
 
     ''' Percolate down in order to reset a heap to proper structure '''
     def percolate_down(self, index):
-        while index * 2 <= self.self.size:
-
+        while index * 2 <= self.self.size:                  # Check if we still have room to move down
+            minimum = self.get_min_child(index)             # Find the node's minimum child
+            if self.data[index] > self.data[minimum]:       # Check if we have reached the bottom
+                temp = self.data[index]                     # Keep track before switch
+                self.data[index] = self.data[minimum]       # Switch node
+                self.data[minimum] = temp                   # Switch node
+            index = minimum                                 # move our location downwards
 
     def insert(self, value):
         self.data.append(value)
         self.size += 1
         self.percolate_up
 
-    def get_min_child(self, index):                                 #
+    def delete_minimum(self):
+        pass
+
+    ''' Find the smallest child of the current sample node '''
+    def get_min_child(self, index):
         if index * 2 + 1 > self.size:
             return index * 2
         else:
