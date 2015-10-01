@@ -12,7 +12,7 @@ class Tokenizer:
     def _marx(self):
         # Todo: fixme
         marx_list = []
-        marxer = re.compile(r'[\s{}]+'.format(re.escape("#$%&*+/;<=>@[\]^_`{|}~\"")))
+        marxer = re.compile(r'[\s{}]+'.format(re.escape("#$%&*+/;<=>@[\]^_`{|}~\'")))
         for line in self.data:
             for word in marxer.split(str(line)):
                 marx_list.append(word)
