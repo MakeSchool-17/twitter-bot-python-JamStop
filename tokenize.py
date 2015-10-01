@@ -2,6 +2,7 @@
 
 
 import re
+# from string import punctuation
 
 
 class Tokenizer:
@@ -10,11 +11,14 @@ class Tokenizer:
 
     def _marx(self):
         # Todo: fixme
-        marx_split = '[] '
-        marxer = re.compile(r'[\s{}]+'.format(re.escape(punctuation)))
+        marx_list = []
+        marxer = re.compile(r'[\s{}]+'.format(re.escape("#$%&*+/;<=>@[\]^_`{|}~\"")))
         for line in self.data:
-            for word in punct.split(str(line)):
-                pass
+            for word in marxer.split(str(line)):
+                marx_list.append(word)
+        return marx_list
 
 if __name__ == "__main__":
-    t = Tokenizer('hahahaha')
+    with open("marx.txt", 'rb') as f:
+        t = Tokenizer(f)
+        print(t._marx())

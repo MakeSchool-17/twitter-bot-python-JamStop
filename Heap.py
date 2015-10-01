@@ -30,8 +30,22 @@ class Heap:
         self.size += 1
         self.percolate_up
 
+    def rebuild(self, data):
+        self.size = len(data)
+        d_index = len(data) // 2
+        self.data = [0] + data[:]
+        while d_index > 0:
+            self.percolate_down(d_index)
+            d_index -= 1
+
+    ''' Deletes the minimum in the heap '''
     def delete_minimum(self):
-        pass
+        value = self.data[1]
+        self.data[1] = self.data[self.size]
+        self.size -= 1
+        self.data.pop()
+        self.percolate_down(1)
+        return value
 
     ''' Find the smallest child of the current sample node '''
     def get_min_child(self, index):
