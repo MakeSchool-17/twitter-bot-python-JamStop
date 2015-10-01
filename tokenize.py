@@ -9,7 +9,11 @@ class Tokenizer:
         self.data = text
 
     def _marx(self):
-        pass
+        marxer = re.compile(r'[\s{}]+'.format(re.escape(punctuation)))
+        for line in self.data:
+            for word in punct.split(str(line)):
+
+
 
 if __name__ == "__main__":
     t = Tokenizer('hahahaha')
