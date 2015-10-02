@@ -1,8 +1,7 @@
-''' Jimmy's Attempt at Heaps :D '''
-''' This is a minHeap, I'll try to make a maxHeap '''
+''' Jimmy MaxHeap '''
 
 
-class Heap:
+class MaxHeap:
     def __init__(self):
         self.data = [None]
         self.size = 0
@@ -10,7 +9,7 @@ class Heap:
     ''' Percolate up in order to move an appended index to the right place '''
     def percolate_up(self, index):
         while index // 2 > 0:                               # work way up to root
-            if self.data[index] < self.data[index // 2]:    # check if we still need to move
+            if self.data[index] > self.data[index // 2]:    # check if we still need to move
                 value = self.data[index // 2]               # keep track of what we're moving
                 self.data[index // 2] = self.data[index]    # move our item up
                 self.data[index] = value                    # switch the other one in
@@ -19,12 +18,12 @@ class Heap:
     ''' Percolate down in order to reset a heap to proper structure '''
     def percolate_down(self, index):
         while index * 2 <= self.self.size:                  # Check if we still have room to move down
-            minimum = self.get_min_child(index)             # Find the node's minimum child
-            if self.data[index] > self.data[minimum]:       # Check if we have reached the bottom
+            maximum = self.get_max_child(index)             # Find the node's maximum child
+            if self.data[index] < self.data[maximum]:       # Check if we have reached the bottom
                 temp = self.data[index]                     # Keep track before switch
-                self.data[index] = self.data[minimum]       # Switch node
-                self.data[minimum] = temp                   # Switch node
-            index = minimum                                 # move our location downwards
+                self.data[index] = self.data[maximum]       # Switch node
+                self.data[maximum] = temp                   # Switch node
+            index = maximum                                 # move our location downwards
 
     def insert(self, value):
         self.data.append(value)
@@ -39,7 +38,7 @@ class Heap:
             self.percolate_down(d_index)
             d_index -= 1
 
-    ''' Deletes the minimum (root) in the heap '''
+    ''' Deletes the maximum (root) in the heap '''
     def delete_minimum(self):
         value = self.data[1]
         self.data[1] = self.data[self.size]
@@ -48,12 +47,12 @@ class Heap:
         self.percolate_down(1)
         return value
 
-    ''' Find the smallest child of the current sample node '''
-    def get_min_child(self, index):
+    ''' Find the max child of the current sample node '''
+    def get_max_child(self, index):
         if index * 2 + 1 > self.size:
             return index * 2
         else:
-            if self.data[index * 2] < self.data[index * 2 + 1]:
+            if self.data[index * 2] > self.data[index * 2 + 1]:
                 return index * 2
             else:
                 return index * 2 + 1

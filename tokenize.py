@@ -14,11 +14,11 @@ class Tokenizer:
         marx_list = []
         marxer = re.compile(r'[\s{}]+'.format(re.escape("#$%&*+/;<=>@[\]^_`{|}~\'")))
         for line in self.data:
-            for word in marxer.split(str(line)):
-                marx_list.append(word)
+            for word in marxer.split(line):
+                if word is not '':
+                    marx_list.append(word)
         return marx_list
-
 if __name__ == "__main__":
-    with open("marx.txt", 'rb') as f:
+    with open("marx.txt", 'r') as f:
         t = Tokenizer(f)
         print(t._marx())
