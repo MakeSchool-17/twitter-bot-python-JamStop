@@ -5,7 +5,7 @@
 
 
 class Markov:
-    def __init__(self, parsed_data):
+    def __init__(self, parsed_data):                # Parsed data that is passed in is split into words and punct
         self.data = parsed_data                     # Have a lot of properties, maybe clean up later
         # self.openers = Island("OPENER")
         # self.mids = Island("MID")
@@ -27,6 +27,7 @@ class Markov:
 class Node:
     def __init__(self, value, node_type):
         self.value = value
+
         self.type = node_type           # Either is a word (maybe properties later) or punctuation
         # self.island = island            # In case need to reference wrapper
         self.word_links = []
