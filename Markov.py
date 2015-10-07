@@ -5,6 +5,7 @@
 
 
 from collections import defaultdict
+from string import punctuation
 
 
 class Markov:
@@ -14,19 +15,26 @@ class Markov:
         # self.mids = Island("MID")
         # self.finishers = Island("FINISHER")
 
-        self.openers = set()
+        self.openers = defaultdict(Node)
+        self.mids = defaultdict(Node)
+        self.finishers = defaultdict(Node)
 
     def build(self):
         prev_node = None                            # Keep track of previous node for markov purposes
-        state = None                                # Keep track of the state the parser is in
+        state = "START"                                # Keep track of the state the parser is in
         for index in range(self.data):
+            new_node = None
+            item = self.data[index]
             if index == 0:
-                new_node = Node(self.data[0], "START")
+                new_node = Node(item, "START")
                 self.openers.add(new_node)
                 prev_node = new_node
                 state = "MID"
             else:                                   # Bulk of checkers in here
-                pass
+                if state == "MID":
+                    if item in punctuation:
+                        new_node = Node(item, "PUNCT")
+                        previous_node.punct_links.append(Link())
 
 
 ''' Wrapper for nodes and node types '''
@@ -47,8 +55,8 @@ class Node:
         ''' NODE TYPES: START, MID, END, MID_PUNCT, END_PUNCT '''
         self.type = node_type           # Either is a word (maybe properties later) or punctuation
         # self.island = island            # In case need to reference wrapper
-        self.word_links = []
-        self.punct_links = []           # Seperate
+        self.word_links = defaultdict(Link)            # Need seperate data structure instead of lists for link
+        self.punct_links = defaultdict(Link)           # Seperate
 
 
 ''' Links need their own class '''
@@ -58,7 +66,7 @@ class Link:
     def __init__(self, target):
         self.target = target
         self.target_type = target.type
-        self.frequency = 1
+        self.frequency = 0
         self.previous_words = []        # For later, doesn't have to be used right now
 
 
