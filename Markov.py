@@ -57,7 +57,7 @@ class Node:
         # self.island = island            # In case need to reference wrapper
         self.word_links = defaultdict(Link)            # Need seperate data structure instead of lists for link
         self.punct_links = defaultdict(Link)           # Seperate
-
+        pass
 
 ''' Links need their own class '''
 
